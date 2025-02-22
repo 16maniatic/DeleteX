@@ -1,6 +1,7 @@
 ## This repository consists of tools to delete all your activity on X (Twitter) without the need to delete your account.
 
 **⚠️ WARNING!**
+
 Executing the selected script will permanently delete everything. You can download your data by following these steps:
 
 [EN] https://help.x.com/en/managing-your-account/accessing-your-x-data
