@@ -1,20 +1,4 @@
-## This repository consists of tools to delete all your activity on X (Twitter) without the need to delete your account.
-
-**⚠️ WARNING!**
-Executing the selected script will permanently delete everything. You can download your data by following these steps:
-
-[EN] https://help.x.com/en/managing-your-account/accessing-your-x-data
-[ES] https://help.x.com/es/managing-your-account/accessing-your-x-data
-
-To run a script, go to your X profile and press "**Ctrl**" + "**Shift**" + "**J**". In the console, type "allow pasting" and press "**Enter**". After that, you can paste the script into the console and execute it using the "**Start**" option located at the top right of X.
-
-Please note that if you delete a large number of items, your profile may appear empty due to "too many requests". It is recommended to wait **24** to **48** hours to avoid a "**Read-Only Mode**", which could last up to **7 days**.
-
-### Unretweets
-
-1. Go to: https://twitter.com/{username}
-2. Open the console and run the following JavaScript code:
-```javascript
+// Configuration
 const config = {
     MAX_UNRETWEETS: 5500,
     BASE_WAIT_TIME: 250,
@@ -26,6 +10,7 @@ const config = {
     PROGRESS_REPORT_INTERVAL: 60 * 1000,
   };
   
+  // Helper functions
   function fetchRetweets(lastButton = null) {
     const buttons = document.querySelectorAll('[data-testid="unretweet"]');
     if (lastButton) {
@@ -56,6 +41,7 @@ const config = {
     return localStorage.getItem("totalUnretweetCount") || 0;
   }
   
+  // UI elements
   const uiContainer = document.createElement("div");
   uiContainer.style.position = "fixed";
   uiContainer.style.top = "10px";
@@ -139,10 +125,12 @@ const config = {
           updateUI();
           await wait(waitTime);
   
+          // Adaptive timing
           if (waitTime > 1000 && errorCount === 0) {
             waitTime -= config.DECREMENT_WAIT;
           }
   
+          // Rate limiting
           const now = Date.now();
           const elapsedTime = now - lastUnretweetTime;
           if (elapsedTime < config.RATE_LIMIT_WINDOW) {
@@ -239,6 +227,4 @@ const config = {
     pauseButton.disabled = false;
     resumeButton.disabled = true;
   });
-  ```
-
   
