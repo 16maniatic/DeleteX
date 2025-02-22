@@ -228,7 +228,7 @@ async function deleteAllTweets() {
 }
 
 function updateUI() {
-  statusText.textContent = `Eliminados esta sesión: ${deleteCount} | Total eliminados: ${totalDeleteCount}`;
+  statusText.textContent = `Deleted this session: ${deleteCount} | Total deleted: ${totalDeleteCount}`;
 
   if (isRunning && !shouldStop) {
     setTimeout(updateUI, config.PROGRESS_REPORT_INTERVAL);
